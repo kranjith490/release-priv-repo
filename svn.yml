@@ -1,0 +1,16 @@
+---
+ - hosts: svn
+   tasks:
+     - name: svn checkout file
+       subversion:
+         repo: http://192.168.11.11/svn/demo
+         dest: /etc/checkout
+         username: readuser
+         password: $vnR3p0
+         checkout: yes
+ - hosts: deploy
+   tasks:
+     - name: deploying file
+       copy:
+         dest: /root/
+         src: /etc/checkout
